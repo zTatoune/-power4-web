@@ -1,41 +1,58 @@
-# Power4 Web 🎮
+# Power 4 Web
 
-Un jeu de Puissance 4 (Connect Four) développé en Go avec une interface web
+Un Puissance 4 jouable dans le navigateur, à deux sur le même écran. Le serveur est écrit en Go (`net/http`, templates HTML), l'interface en HTML et CSS.
 
-### Démarrage du serveur
+Projet d'école réalisé à Ynov (projet solo).
 
-Lancez le serveur avec la commande :
+## Fonctionnalités
+
+- **3 niveaux de difficulté** (taille de la grille) :
+  - Normal : 6 × 7
+  - Difficile : 6 × 9
+  - Expert : 7 × 8
+- Noms des joueurs personnalisables
+- Détection de la victoire et du match nul
+- Bouton pour recommencer la partie
+
+## Lancer le jeu
+
+### Prérequis
+
+- [Go](https://go.dev/dl/) 1.22 ou plus récent
+
+### Installation
+
+```bash
+git clone https://github.com/zTatoune/-power4-web.git
+```
+
+```bash
+cd -power4-web
+```
+
+### Démarrer le serveur
+
 ```bash
 go run .
 ```
 
-Ou alternativement :
-```bash
-go run main.go
-```
+Puis ouvre **http://localhost:8080** dans ton navigateur.
 
-Le serveur démarre par défaut sur **http://localhost:8080**
+## Comment jouer
 
-### Accès au jeu
+1. Entre les noms des deux joueurs.
+2. Choisis une difficulté.
+3. Clique sur « Commencer la partie ».
+4. Chacun son tour, clique sur une colonne pour y faire tomber un jeton.
+5. Le premier qui aligne 4 jetons (horizontalement, verticalement ou en diagonale) gagne.
 
-Ouvrez votre navigateur et accédez à :
-```
-http://localhost:8080
-```
+## Structure
 
-## 🎯 Fonctionnalités
-
-- **3 modes de difficulté** :
-  - Normal (6x7)
-  - Difficile (6x9)
-  - Expert (7x8)
-- Noms personnalisables pour les joueurs
-
-## 🎮 Comment jouer
-
-1. Entrez les noms des joueurs
-2. Choisissez une difficulté
-3. Cliquez sur "Commencer la partie"
-4. Les joueurs jouent à tour de rôle en cliquant sur les colonnes
-5. Le premier à aligner 4 jetons gagne !
-
+| Fichier | Rôle |
+|---|---|
+| `main.go` | Point d'entrée |
+| `src/server.go` | Routes et serveur HTTP (port 8080) |
+| `src/handler.go` | Pages : accueil, partie, coup joué, remise à zéro |
+| `src/game.go` | Règles du jeu : grille, chute des jetons, victoire |
+| `page/`, `index.html` | Templates HTML |
+| `static/style.css` | Styles |
